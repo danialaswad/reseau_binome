@@ -1,10 +1,15 @@
 package polytech.si3.firstserver.host;
 
+import polytech.si3.User;
+import polytech.si3.requests.Request;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by danialaswad on 03/05/2016.
@@ -15,8 +20,10 @@ public class IdeaServer extends Thread{
     private RequestHandler requestHandler;
 
 
+
     public IdeaServer(int port) throws IOException
     {
+
         try {
             serverSocket = new ServerSocket(port);
         }
