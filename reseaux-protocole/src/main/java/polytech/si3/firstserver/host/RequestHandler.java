@@ -20,10 +20,13 @@ public class RequestHandler {
     private Request request;
     private Reply response;
 
+    private String clientIP;
+
     private RequestType requestType;
 
-    public RequestHandler(Object object){
+    public RequestHandler(Object object, String clientIP){
         this.request = (Request) object;
+        this.clientIP = clientIP;
     }
 
     /**
@@ -32,11 +35,13 @@ public class RequestHandler {
     public void readRequest(){
         // To do
         requestType = request.requestType();
+        System.out.println(users);
 
         switch(requestType){
             case USER_AUTHENTIFICATION:
                 UserData userData = new UserData((((UserAuthentificationRequest) request).user()));
-                response =  new Authentification(userData,users).process();
+                response =  new Authentification(userData,users,clientIP).process();
+
                 break;
 
             case IDEA_CREATION:
@@ -90,9 +95,7 @@ public class RequestHandler {
      * @return Reply response to the request
      */
     public Object response(){
-
-
-
+        System.out.println(users);
         return response;
     }
 }

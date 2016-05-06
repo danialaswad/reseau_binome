@@ -38,7 +38,7 @@ public class IdeaServer extends Thread{
                         + " : " + clientSocket.getLocalPort());
                 ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
                 try {
-                    requestHandler = new RequestHandler(in.readObject());
+                    requestHandler = new RequestHandler(in.readObject(),clientSocket.getInetAddress().toString());
                     requestHandler.readRequest(); // This is where request is handled
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();

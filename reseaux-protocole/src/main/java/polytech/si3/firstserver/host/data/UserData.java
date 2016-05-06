@@ -6,6 +6,8 @@ public class UserData {
 
     private final int type;
     private final String name, surname, email, id;
+    private boolean connected;
+    private String adress;
     
     /**
      * Instantiates a new user 
@@ -21,6 +23,8 @@ public class UserData {
         this.surname = surname;
         this.email = email;
         this.id = id;
+        this.connected = false;
+        this.adress = "NONE";
     }
 
     public UserData(User user){
@@ -51,6 +55,28 @@ public class UserData {
         return id;
     }
 
+    public void connect(String adress){
+        this.connected = true;
+        this.adress = adress;
+    }
+
+    public void endConnexion(){
+        this.connected = false;
+        this.adress = "NONE";
+    }
+
+    public boolean isConnected(){
+        return connected;
+    }
+
+    public boolean isConnectedTo(String adress){
+        return  connected && this.adress.equals(adress);
+    }
+
+    public String getAdress(){
+        return adress;
+    }
+
     @Override
     public boolean equals(Object o){
 
@@ -67,5 +93,13 @@ public class UserData {
         catch(Exception e){
             return false;
         }
+    }
+
+    @Override
+    public String toString(){
+        String s = type + "    | " + name + " | " + surname + " | " + email + " | " + id;
+        if(isConnected())
+            s+= " ( Connected to : " + adress + " ) ";
+        return s;
     }
 }

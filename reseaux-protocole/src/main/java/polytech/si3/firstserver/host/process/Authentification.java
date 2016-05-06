@@ -14,17 +14,27 @@ public class Authentification {
 
     private UserData userData;
     private Users users;
+    private String adress;
 
-    public Authentification(UserData userData, Users users){
+    public Authentification(UserData userData, Users users, String adress){
         this.userData = userData;
         this.users = users;
+        this.adress = adress;
     }
 
     public Reply process(){
-        if(users.contains(userData))
+        try{
+            users.connect(userData,adress);
             return new Success();
+        }
 
-        return new Error(ErrorType.INVALID_USER,"Could not find user");
+       catch(Exception e){
+           return new Error(ErrorType.INVALID_USER,"Could not find user");
+       }
+    }
+
+    public Users users(){
+        return users;
     }
 
 }
