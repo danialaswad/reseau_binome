@@ -1,11 +1,15 @@
 package polytech.si3.firstserver.host;
 
 import polytech.si3.User;
+import polytech.si3.firstserver.host.data.Idea;
+import polytech.si3.firstserver.host.data.Ideas;
 import polytech.si3.firstserver.host.data.UserData;
 import polytech.si3.firstserver.host.data.Users;
 import polytech.si3.firstserver.host.process.Authentification;
+import polytech.si3.firstserver.host.process.IdeaCreationProcess;
 import polytech.si3.replies.*;
 import polytech.si3.replies.Error;
+import polytech.si3.requests.IdeaCreationRequest;
 import polytech.si3.requests.Request;
 import polytech.si3.requests.RequestType;
 import polytech.si3.requests.UserAuthentificationRequest;
@@ -16,6 +20,7 @@ import polytech.si3.requests.UserAuthentificationRequest;
 public class RequestHandler {
 
     private static Users users = new Users();
+    private static Ideas ideas = new Ideas();
 
     private Request request;
     private Reply response;
@@ -35,7 +40,7 @@ public class RequestHandler {
     public void readRequest(){
         // To do
         requestType = request.requestType();
-        System.out.println(users);
+       // System.out.println(users);
 
         switch(requestType){
             case USER_AUTHENTIFICATION:
@@ -45,7 +50,10 @@ public class RequestHandler {
                 break;
 
             case IDEA_CREATION:
-                response = new Success();
+                IdeaCreationRequest idea =(IdeaCreationRequest) request;
+                IdeaCreationProcess p = new IdeaCreationProcess(users,clientIP,ideas,idea);
+                response = p.process();
+               // p.printError();
                 break;
 
             case IDEA_LIST:
@@ -87,7 +95,7 @@ public class RequestHandler {
 
         }
 
-        System.out.println(requestType);
+      //  System.out.println(requestType);
     }
 
     /**

@@ -33,6 +33,8 @@ public class UserData {
         this.surname = user.surname();
         this.email = user.email();
         this.id = user.id();
+        this.connected = false;
+        this.adress = "NONE";
     }
 
     public int type() {
