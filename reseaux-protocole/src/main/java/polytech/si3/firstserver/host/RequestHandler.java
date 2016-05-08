@@ -90,7 +90,10 @@ public class RequestHandler {
                 break;
 
             case ACCEPT_USER:
-                response = new Success();
+                String userId = ((AcceptUserRequest) request).userId()+"";
+                id = ((AcceptUserRequest) request).ideaId();
+                AcceptUserProcess acceptUserProcess = new AcceptUserProcess(users,clientIP,ideas,userId,id);
+                response = acceptUserProcess.process();
                 break;
 
             case DENY_USER:

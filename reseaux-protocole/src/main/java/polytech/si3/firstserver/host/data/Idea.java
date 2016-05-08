@@ -61,6 +61,10 @@ public class Idea {
         return authorId;
     }
 
+    public void setAuthorId(String authorId){
+        this.authorId = authorId;
+    }
+
     public int id(){
         return id;
     }
@@ -83,7 +87,9 @@ public class Idea {
     }
 
     public void addParticipant(String participantID){
-        participantsID.add(participantID);
+
+        if(!participantsID.contains(participantID))
+            participantsID.add(participantID);
     }
     public List<String> getParticipantsID(){
         return participantsID;
@@ -127,6 +133,14 @@ public class Idea {
             }
 
         return participants;
+    }
+
+    public UserData getParticipant(String userId, Users users){
+        for(int i = 0; i < participantsID.size(); i++)
+            if(participantsID.get(i).equals(userId))
+                return users.findID(userId);
+
+        return null;
     }
 
     @Override

@@ -37,7 +37,9 @@ public class IdeaCreationProcess extends IdeaProcess {
         if(ideas.size() >= ideas.MAX_SIZE)
             return error = new Error(ErrorType.TOO_MANY_IDEAS,"Max size " + ideas.MAX_SIZE + " has been reached for ideas");
 
+        idea.setAuthorId(users.findAdress(adress).id());
         ideas.add(idea);
+        //System.out.println(idea.authorId());
         return ideaReply();
     }
 
