@@ -91,6 +91,12 @@ public class Idea {
         if(!participantsID.contains(participantID))
             participantsID.add(participantID);
     }
+
+    public void removeParticipant(String participantID){
+        if(participantsID.contains(participantID))
+            participantsID.remove(participantID);
+    }
+
     public List<String> getParticipantsID(){
         return participantsID;
     }

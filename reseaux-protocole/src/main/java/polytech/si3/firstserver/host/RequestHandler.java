@@ -37,6 +37,7 @@ public class RequestHandler {
         // To do
         requestType = request.requestType();
         int id;
+        String userId;
        // System.out.println(users);
 
         switch(requestType){
@@ -90,14 +91,17 @@ public class RequestHandler {
                 break;
 
             case ACCEPT_USER:
-                String userId = ((AcceptUserRequest) request).userId()+"";
+                userId = ((AcceptUserRequest) request).userId()+"";
                 id = ((AcceptUserRequest) request).ideaId();
                 AcceptUserProcess acceptUserProcess = new AcceptUserProcess(users,clientIP,ideas,userId,id);
                 response = acceptUserProcess.process();
                 break;
 
             case DENY_USER:
-                response = new Success();
+                userId = ((DenyUserRequest) request).userId()+"";
+                id = ((DenyUserRequest) request).ideaId();
+                DenyUserProcess denyUserProcess = new DenyUserProcess(users,clientIP,ideas,userId,id);
+                response = denyUserProcess.process();
                 break;
 
             default:
