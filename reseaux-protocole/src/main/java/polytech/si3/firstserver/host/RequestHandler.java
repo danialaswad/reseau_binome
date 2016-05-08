@@ -5,10 +5,7 @@ import polytech.si3.firstserver.host.data.Idea;
 import polytech.si3.firstserver.host.data.Ideas;
 import polytech.si3.firstserver.host.data.UserData;
 import polytech.si3.firstserver.host.data.Users;
-import polytech.si3.firstserver.host.process.Authentification;
-import polytech.si3.firstserver.host.process.IdeaCreationProcess;
-import polytech.si3.firstserver.host.process.IdeaInformationProcess;
-import polytech.si3.firstserver.host.process.IdeaListProcess;
+import polytech.si3.firstserver.host.process.*;
 import polytech.si3.replies.*;
 import polytech.si3.replies.Error;
 import polytech.si3.requests.*;
@@ -75,7 +72,9 @@ public class RequestHandler {
                 break;
 
             case IDEA_VALIDATION:
-                response = new Success();
+                int ideaId = ((IdeaValidateRequest) request).ideaId();
+                IdeaValidateProcess ideaValidateProcess = new IdeaValidateProcess(users,clientIP,ideas,ideaId);
+                response = ideaValidateProcess.process();
                 break;
 
             case IDEA_DENY:

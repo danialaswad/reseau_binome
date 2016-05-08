@@ -29,7 +29,7 @@ public class IdeaCreationProcess extends IdeaProcess {
             return error = new Error(ErrorType.INVALID_MANAGER, "No user was found with id " + idea.managerId());
 
         if(ideas.contains(idea))
-            return error = new Error(ErrorType.IDEA_HAS_BEEN_STARTED,"Idea has already been started by manager " + ideas.find(idea).managerId());
+            return error = new Error(ErrorType.NO_PERMISSION,"Idea has already been created by " + ideas.find(idea).authorId());
 
         if(idea.title().length()==0)
             return error = new Error(ErrorType.INVALID_TITLE,"Title " + idea.title() + " is not valid");

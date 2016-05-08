@@ -62,6 +62,18 @@ public class Idea {
         return status;
     }
 
+    public void reset(){
+        this.status = 0;
+    }
+
+    public void validate(){
+        this.status = 1;
+    }
+
+    public void deny(){
+        this.status = 2;
+    }
+
     public User author(Users users){
         UserData authorData = users.findID(this.authorId);
         User author;
