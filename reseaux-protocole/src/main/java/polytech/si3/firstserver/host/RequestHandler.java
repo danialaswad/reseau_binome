@@ -36,6 +36,7 @@ public class RequestHandler {
     public void readRequest(){
         // To do
         requestType = request.requestType();
+        int id;
        // System.out.println(users);
 
         switch(requestType){
@@ -58,31 +59,33 @@ public class RequestHandler {
                 break;
 
             case IDEA_INFOROMATION:
-                int id = ((IdeaInformationRequest) request).ideaId();
+                id = ((IdeaInformationRequest) request).ideaId();
                 IdeaInformationProcess ideaInformationProcess = new IdeaInformationProcess(users,clientIP,ideas,id);
                 response = ideaInformationProcess.process();
                 break;
 
             case USER_PARTICIPATION:
-                int participationId = ((UserParticipationRequest) request).ideaId();
-                UserParticipationProcess userParticipationProcess = new UserParticipationProcess(users,clientIP,ideas,participationId);
+                id = ((UserParticipationRequest) request).ideaId();
+                UserParticipationProcess userParticipationProcess = new UserParticipationProcess(users,clientIP,ideas,id);
                 response = userParticipationProcess.process();
                 break;
 
             case USER_LIST_FROM_IDEA:
-                response = new Success();
+                id = ((UserListRequest) request).ideaId();
+                UserListProcess userListProcess = new UserListProcess(users,clientIP,ideas,id);
+                response = userListProcess.process();
                 break;
 
             case IDEA_VALIDATION:
-                int ideaId = ((IdeaValidateRequest) request).ideaId();
-                IdeaValidateProcess ideaValidateProcess = new IdeaValidateProcess(users,clientIP,ideas,ideaId);
+                id = ((IdeaValidateRequest) request).ideaId();
+                IdeaValidateProcess ideaValidateProcess = new IdeaValidateProcess(users,clientIP,ideas,id);
                 response = ideaValidateProcess.process();
                 break;
 
             case IDEA_DENY:
-                int denyId = ((IdeaDeniedRequest) request).ideaId();
+                id = ((IdeaDeniedRequest) request).ideaId();
                 String denyReason = ((IdeaDeniedRequest) request).reason();
-                IdeaDeniedProcess ideaDeniedProcess = new IdeaDeniedProcess(users,clientIP,ideas,denyId,denyReason);
+                IdeaDeniedProcess ideaDeniedProcess = new IdeaDeniedProcess(users,clientIP,ideas,id,denyReason);
                 response = ideaDeniedProcess.process();
                 break;
 

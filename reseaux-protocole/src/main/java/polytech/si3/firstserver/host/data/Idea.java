@@ -115,6 +115,20 @@ public class Idea {
         return manager;
     }
 
+    public List<User> participants(Users users){
+        List<User> participants = new ArrayList();
+        for(int i = 0; i < participantsID.size();i++)
+            if(participantsID.get(i) != null){
+                UserData participantData = users.findID(participantsID.get(i));
+                if(participantData.getStatus() == 2){
+                    User participant = new User(participantData.type(),participantData.name(),participantData.surname(),participantData.email(),participantData.id());
+                    participants.add(participant);
+                }
+            }
+
+        return participants;
+    }
+
     @Override
     public boolean equals(Object o){
         Idea idea = (Idea) o;
@@ -129,5 +143,9 @@ public class Idea {
             s+="/!\\ DENIED : " + denyReason + " - ";
         s += title+" | " + description + " | " + managerId;
         return s;
+    }
+
+    public static void resetIds(){
+        idNumber = 1;
     }
 }

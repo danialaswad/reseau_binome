@@ -6,6 +6,10 @@ import polytech.si3.firstserver.host.data.Ideas;
 import polytech.si3.firstserver.host.data.Users;
 import polytech.si3.replies.IdeaReply;
 import polytech.si3.replies.Reply;
+import polytech.si3.replies.UserListReply;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by david on 08/05/2016.
@@ -32,6 +36,21 @@ public abstract class IdeaProcess extends Process {
         User manager = idea.manager(users);
 
         return new IdeaReply(idea.id(),idea.status(),author,manager,idea.title(),idea.description());
+    }
+
+    public UserListReply userListReply(){
+        User author = idea.author(users);
+        User manager = idea.manager(users);
+        List<User> participants = idea.participants(users);
+
+        List<User> reply = new ArrayList();
+
+        reply.add(author);
+        reply.add(manager);
+        for(int i = 0; i < participants.size(); i++)
+            reply.add(participants.get(i));
+
+        return new UserListReply(reply);
     }
 
 }
