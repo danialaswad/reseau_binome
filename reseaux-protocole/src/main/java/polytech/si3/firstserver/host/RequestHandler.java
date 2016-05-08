@@ -64,7 +64,9 @@ public class RequestHandler {
                 break;
 
             case USER_PARTICIPATION:
-                response = new Success();
+                int participationId = ((UserParticipationRequest) request).ideaId();
+                UserParticipationProcess userParticipationProcess = new UserParticipationProcess(users,clientIP,ideas,participationId);
+                response = userParticipationProcess.process();
                 break;
 
             case USER_LIST_FROM_IDEA:

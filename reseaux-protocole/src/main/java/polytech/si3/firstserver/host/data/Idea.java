@@ -4,6 +4,9 @@ import polytech.si3.User;
 import polytech.si3.replies.IdeaReply;
 import polytech.si3.requests.IdeaCreationRequest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by david on 07/05/2016.
  */
@@ -11,6 +14,7 @@ public class Idea {
     private String title, description,managerId, authorId,denyReason;
     private int id, status;
     private static int idNumber = 1;
+    private List<String> participantsID;
 
 
     public Idea(String title, String description, String managerId){
@@ -23,6 +27,8 @@ public class Idea {
         idNumber++;
 
         this.status = 0; //status started
+
+        participantsID = new ArrayList();
     }
 
     public Idea(IdeaCreationRequest ideaCreationRequest){
@@ -35,6 +41,8 @@ public class Idea {
         idNumber++;
 
         this.status = 0;
+
+        participantsID = new ArrayList();
     }
 
     public String title(){
@@ -72,6 +80,13 @@ public class Idea {
     public void deny(String denyReason){
         this.status = 2;
         this.denyReason = denyReason;
+    }
+
+    public void addParticipant(String participantID){
+        participantsID.add(participantID);
+    }
+    public List<String> getParticipantsID(){
+        return participantsID;
     }
 
     public User author(Users users){

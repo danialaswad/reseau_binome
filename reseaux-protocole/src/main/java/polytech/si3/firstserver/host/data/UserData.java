@@ -7,7 +7,8 @@ public class UserData {
     private final int type;
     private final String name, surname, email, id;
     private boolean connected;
-    private String adress;
+    private String adress, participationId;
+    private int status; //0 = not interested, 1 = interested, 2 = participant
     
     /**
      * Instantiates a new user 
@@ -25,6 +26,7 @@ public class UserData {
         this.id = id;
         this.connected = false;
         this.adress = "NONE";
+        this.status = 0;
     }
 
     public UserData(User user){
@@ -35,6 +37,7 @@ public class UserData {
         this.id = user.id();
         this.connected = false;
         this.adress = "NONE";
+        this.status = 0;
     }
 
     public int type() {
@@ -77,6 +80,22 @@ public class UserData {
 
     public String getAdress(){
         return adress;
+    }
+
+    public void setParticipationId(String participationId){
+        this.participationId = participationId;
+    }
+
+    public String getParticipationId(){
+        return participationId;
+    }
+
+    public void setStatus(int status){
+        this.status = status;
+    }
+
+    public int getStatus(){
+        return status;
     }
 
     @Override
