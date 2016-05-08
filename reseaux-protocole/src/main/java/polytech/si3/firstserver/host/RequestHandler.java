@@ -7,13 +7,11 @@ import polytech.si3.firstserver.host.data.UserData;
 import polytech.si3.firstserver.host.data.Users;
 import polytech.si3.firstserver.host.process.Authentification;
 import polytech.si3.firstserver.host.process.IdeaCreationProcess;
+import polytech.si3.firstserver.host.process.IdeaInformationProcess;
 import polytech.si3.firstserver.host.process.IdeaListProcess;
 import polytech.si3.replies.*;
 import polytech.si3.replies.Error;
-import polytech.si3.requests.IdeaCreationRequest;
-import polytech.si3.requests.Request;
-import polytech.si3.requests.RequestType;
-import polytech.si3.requests.UserAuthentificationRequest;
+import polytech.si3.requests.*;
 
 /**
  * Created by danialaswad on 03/05/2016.
@@ -63,7 +61,9 @@ public class RequestHandler {
                 break;
 
             case IDEA_INFOROMATION:
-                response = new Success();
+                int id = ((IdeaInformationRequest) request).ideaId();
+                IdeaInformationProcess ideaInformationProcess = new IdeaInformationProcess(users,clientIP,ideas,id);
+                response = ideaInformationProcess.process();
                 break;
 
             case USER_PARTICIPATION:

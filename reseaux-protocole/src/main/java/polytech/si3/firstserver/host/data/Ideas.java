@@ -22,6 +22,14 @@ public class Ideas {
         return list.get(list.indexOf(idea));
     }
 
+    public Idea findID(int id){
+        for(int i = 0; i < list.size(); i++)
+            if(list.get(i).id() == id)
+                return list.get(i);
+
+        return null;
+    }
+
     public boolean contains(Idea idea){
         return list.contains(idea);
     }

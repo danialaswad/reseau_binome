@@ -12,30 +12,12 @@ import polytech.si3.requests.IdeaCreationRequest;
 /**
  * Created by david on 07/05/2016.
  */
-public class IdeaCreationProcess extends Process {
-
-    private Ideas ideas;
-    private Idea idea;
+public class IdeaCreationProcess extends IdeaProcess {
 
     public IdeaCreationProcess(Users users, String adress, Ideas ideas, IdeaCreationRequest idea) {
-        super(users, adress);
-        this.ideas=ideas;
-        this.idea=new Idea(idea);
+        super(users, adress,ideas,new Idea(idea));
     }
 
-    /**
-     * Utilisée uniquement si toutes les conditions de succes sont valides
-     * C'est pourquoi on n'a pas besoin d'encore vérifier que les utilisateurs
-     * auteurs et managers existent
-     * @return
-     */
-    public IdeaReply ideaReply(){
-
-        User author = idea.author(users);
-        User manager = idea.manager(users);
-
-        return new IdeaReply(idea.id(),idea.status(),author,manager,idea.title(),idea.description());
-    }
 
     @Override
     public Reply process() {

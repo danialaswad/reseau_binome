@@ -10,7 +10,7 @@ import polytech.si3.requests.IdeaCreationRequest;
 public class Idea {
     private String title, description;
     private String managerId, authorId;
-    int id, status;
+    private int id, status;
     private static int idNumber = 1;
 
 
