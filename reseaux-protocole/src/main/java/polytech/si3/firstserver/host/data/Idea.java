@@ -8,8 +8,7 @@ import polytech.si3.requests.IdeaCreationRequest;
  * Created by david on 07/05/2016.
  */
 public class Idea {
-    private String title, description;
-    private String managerId, authorId;
+    private String title, description,managerId, authorId,denyReason;
     private int id, status;
     private static int idNumber = 1;
 
@@ -70,8 +69,9 @@ public class Idea {
         this.status = 1;
     }
 
-    public void deny(){
+    public void deny(String denyReason){
         this.status = 2;
+        this.denyReason = denyReason;
     }
 
     public User author(Users users){
@@ -109,6 +109,10 @@ public class Idea {
 
     @Override
     public String toString(){
-        return title+" | " + description + " | " + managerId;
+        String s="";
+        if(status == 2)
+            s+="/!\\ DENIED : " + denyReason + " - ";
+        s += title+" | " + description + " | " + managerId;
+        return s;
     }
 }

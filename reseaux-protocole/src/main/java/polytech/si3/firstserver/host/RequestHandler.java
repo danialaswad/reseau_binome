@@ -78,7 +78,10 @@ public class RequestHandler {
                 break;
 
             case IDEA_DENY:
-                response = new Success();
+                int denyId = ((IdeaDeniedRequest) request).ideaId();
+                String denyReason = ((IdeaDeniedRequest) request).reason();
+                IdeaDeniedProcess ideaDeniedProcess = new IdeaDeniedProcess(users,clientIP,ideas,denyId,denyReason);
+                response = ideaDeniedProcess.process();
                 break;
 
             case ACCEPT_USER:
