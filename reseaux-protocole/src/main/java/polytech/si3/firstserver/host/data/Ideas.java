@@ -30,6 +30,10 @@ public class Ideas {
         return list.size();
     }
 
+    public Idea get(int i){
+        return list.get(i);
+    }
+
     @Override
     public String toString(){
         String s = "TITLE | DESCRIPTION | MANAGERID\n";

@@ -16,7 +16,6 @@ public class IdeaCreationProcess extends Process {
 
     private Ideas ideas;
     private Idea idea;
-    private Error error;
 
     public IdeaCreationProcess(Users users, String adress, Ideas ideas, IdeaCreationRequest idea) {
         super(users, adress);
@@ -24,12 +23,16 @@ public class IdeaCreationProcess extends Process {
         this.idea=new Idea(idea);
     }
 
+    /**
+     * Utilisée uniquement si toutes les conditions de succes sont valides
+     * C'est pourquoi on n'a pas besoin d'encore vérifier que les utilisateurs
+     * auteurs et managers existent
+     * @return
+     */
     public IdeaReply ideaReply(){
-        UserData authorData = users.findID(idea.authorId());
-        UserData managerData = users.findID(idea.managerId());
 
-        User author = new User(authorData.type(),authorData.name(),authorData.surname(),authorData.email(),authorData.id());
-        User manager = new User(managerData.type(),managerData.name(),managerData.surname(),managerData.email(),managerData.id());
+        User author = idea.author(users);
+        User manager = idea.manager(users);
 
         return new IdeaReply(idea.id(),idea.status(),author,manager,idea.title(),idea.description());
     }
@@ -54,16 +57,6 @@ public class IdeaCreationProcess extends Process {
 
         ideas.add(idea);
         return ideaReply();
-    }
-
-    public void printError(){
-       try{
-           System.out.println(error.errorType() + " : " + error.reason());
-       }
-
-       catch(Exception e){
-           System.out.println("NONE");
-       }
     }
 
 }

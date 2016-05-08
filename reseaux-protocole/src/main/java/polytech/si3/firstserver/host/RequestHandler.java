@@ -7,6 +7,7 @@ import polytech.si3.firstserver.host.data.UserData;
 import polytech.si3.firstserver.host.data.Users;
 import polytech.si3.firstserver.host.process.Authentification;
 import polytech.si3.firstserver.host.process.IdeaCreationProcess;
+import polytech.si3.firstserver.host.process.IdeaListProcess;
 import polytech.si3.replies.*;
 import polytech.si3.replies.Error;
 import polytech.si3.requests.IdeaCreationRequest;
@@ -57,7 +58,8 @@ public class RequestHandler {
                 break;
 
             case IDEA_LIST:
-                response = new Success();
+                IdeaListProcess ideaListProcess = new IdeaListProcess(users,clientIP,ideas);
+                response = ideaListProcess.process();
                 break;
 
             case IDEA_INFOROMATION:

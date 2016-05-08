@@ -1,5 +1,6 @@
 package polytech.si3.firstserver.host.data;
 
+import polytech.si3.User;
 import polytech.si3.replies.IdeaReply;
 import polytech.si3.requests.IdeaCreationRequest;
 
@@ -59,6 +60,32 @@ public class Idea {
 
     public int status(){
         return status;
+    }
+
+    public User author(Users users){
+        UserData authorData = users.findID(this.authorId);
+        User author;
+        try{
+            author = new User(authorData.type(),authorData.name(),authorData.surname(),authorData.email(),authorData.id());
+        }
+        catch(Exception e){
+            author = null;
+        }
+
+        return author;
+    }
+
+    public User manager(Users users){
+        UserData managerData = users.findID(this.managerId);
+        User manager;
+        try{
+            manager = new User(managerData.type(),managerData.name(),managerData.surname(),managerData.email(),managerData.id());
+        }
+        catch(Exception e){
+            manager = null;
+        }
+
+        return manager;
     }
 
     @Override
