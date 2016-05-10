@@ -24,6 +24,7 @@ public class Authentification {
 
     public Reply process(){
         try{
+            System.out.println(userData);
             users.connect(userData,adress);
             return new Success();
         }

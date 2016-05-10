@@ -29,7 +29,7 @@ public class AcceptUserProcess extends IdeaProcess {
     @Override
     public Reply process() {
 
-//        System.out.println(idea.authorId() + " : " + idea.managerId());
+//       System.out.println(idea.authorId() + " : " + idea.managerId());
         if(!checkAuthentified())
             return error = new Error(ErrorType.NOT_AUTHENTICATED,"User with adress " + adress +" is not connected!");
 

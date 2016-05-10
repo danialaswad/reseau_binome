@@ -103,8 +103,7 @@ public class UserData {
 
         try{
             UserData userData = (UserData) o;
-            boolean eq = (this.type == userData.type
-                            && this.name.equals(userData.name)
+            boolean eq = ( this.name.equals(userData.name)
                             && this.surname.equals(userData.surname)
                             && this.email.equals(userData.email)
                             && this.id.equals(userData.id));

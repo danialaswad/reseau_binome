@@ -17,6 +17,7 @@ public class Idea {
     private List<String> participantsID;
 
 
+
     public Idea(String title, String description, String managerId){
         this.title = title;
         this.description = description;

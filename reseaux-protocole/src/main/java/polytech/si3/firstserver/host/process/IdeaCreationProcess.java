@@ -40,7 +40,8 @@ public class IdeaCreationProcess extends IdeaProcess {
         idea.setAuthorId(users.findAdress(adress).id());
         ideas.add(idea);
         //System.out.println(idea.authorId());
-        return ideaReply();
+        return ideaId();
+        //return ideaReply();
     }
 
 }
