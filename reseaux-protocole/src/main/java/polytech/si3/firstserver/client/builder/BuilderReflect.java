@@ -25,7 +25,7 @@ public class BuilderReflect {
     private void initMap() {
         Method[] methods = reflectClass.getDeclaredMethods();
         for (Method method : methods){
-            if (!method.getName().startsWith("get") || !method.getName().startsWith("auth")) {
+            if (!method.getName().startsWith("get") && !method.getName().startsWith("auth")) {
                     methodMap.put(method.getName(),method.getParameterTypes());
             }
         }
@@ -34,8 +34,8 @@ public class BuilderReflect {
     public void printMethod(){
         System.out.println("\n\tRequest " + " --> Description" + " --> Manual");
         for (String m : methodMap.keySet()){
-            System.out.print("\t" + m + " --> "+ UserRequest.valueOf(m.toUpperCase()).getDescrition() +
-            " --> " + UserRequest.valueOf(m.toUpperCase()).getManual()+ "\n");
+            System.out.print("\t" + m + " --> " + UserRequest.valueOf(m.toUpperCase()).getDescrition() +
+                    " --> " + UserRequest.valueOf(m.toUpperCase()).getManual() + "\n");
         }
         System.out.println();
     }

@@ -35,7 +35,7 @@ public class Handler {
         try {
             method = readerReflect.getMethod(reply.getSimpleName().toLowerCase(),methodMap.get(reply.getSimpleName().toLowerCase()));
             method.invoke(reader,object);
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException |IllegalArgumentException e) {
             e.printStackTrace();
         }
     }

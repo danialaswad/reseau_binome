@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class ClientConnexion {
 
     private static final int STUDENT = 1;
-    private static final int PROF = 1;
+    private static final int PROF = 0;
     private User user;
     private Builder builder;
     private BuilderReflect reflect;

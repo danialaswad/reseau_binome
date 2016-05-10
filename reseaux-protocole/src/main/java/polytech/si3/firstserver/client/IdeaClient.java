@@ -4,6 +4,7 @@ import polytech.si3.firstserver.client.builder.ClientConnexion;
 import polytech.si3.replies.Reply;
 import polytech.si3.requests.RequestType;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

@@ -8,7 +8,7 @@ import polytech.si3.firstserver.client.builder.ClientConnexion;
 public class ClientMain {
     public static void main(String args[]){
         ClientConnexion connexion = new ClientConnexion();// This is where the client should choose or create their request
-        Thread client = new IdeaClient("localhost", 9000, connexion);
+        Thread client = new IdeaClient("localhost", 9001, connexion);
         client.start();
 
     }
