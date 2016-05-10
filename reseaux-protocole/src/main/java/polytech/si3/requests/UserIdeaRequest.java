@@ -12,19 +12,19 @@ public abstract class UserIdeaRequest extends IdeaRequest {
      */
     private static final long serialVersionUID = 2293408738627846012L;
     
-    private final int userId;
+    private final String userId;
     
     /**
      * Instantiates a new accept user request for an idea
      * @param ideaId The idea id
      * @param userId The user id
      */
-    public UserIdeaRequest(int ideaId, int userId) {
+    public UserIdeaRequest(int ideaId, String userId) {
         super(ideaId);
         this.userId = userId;
     }
     
-    public int userId() {
+    public String userId() {
         return userId;
     }
 

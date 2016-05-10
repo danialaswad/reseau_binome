@@ -1,11 +1,15 @@
 package polytech.si3.firstserver.client;
 
+import polytech.si3.firstserver.client.builder.ClientConnexion;
 import polytech.si3.replies.Reply;
+import polytech.si3.requests.RequestType;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  * Created by danialaswad on 03/05/2016.
@@ -15,31 +19,28 @@ public class IdeaClient extends Thread {
     private Socket clientSocket;
     private int port;
     private String host;
-    private Object object;
-    private ResponseHandler responseHandler;
+    private ClientConnexion connexion;
 
-    public IdeaClient(String host,int port, Object object){
+    public IdeaClient(String host,int port, ClientConnexion connexion){
         this.host = host;
         this.port = port;
-        this.object = object;
+        this.connexion = connexion;
     }
 
     public void run(){
         try {
             clientSocket = new Socket(host,port);
-            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-            out.writeObject(object);
             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
-            try {
-                responseHandler = new ResponseHandler((Reply) in.readObject());
-                responseHandler.read(); // This is where response should be handle
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+            out.writeObject(connexion.getBuilder());
+            connexion.read(in.readObject());
+            while (true){
+                connexion.prompter();
+                out.writeObject(connexion.getBuilder());
+                connexion.read(in.readObject());
             }
-            clientSocket.close();
-            out.close();
 
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

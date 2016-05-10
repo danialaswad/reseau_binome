@@ -13,7 +13,7 @@ public class IdeaCreationRequest implements Request {
     private static final long serialVersionUID = 5391693924177866599L;
     
     private final String title, description;
-    private final int managerId;
+    private final String managerId;
     
     /**
      * Instantiates a new idea creation request
@@ -21,7 +21,7 @@ public class IdeaCreationRequest implements Request {
      * @param description The description of the idea
      * @param managerId The current id of the manager (c.f. User)
      */
-    public IdeaCreationRequest(String title, String description, int managerId) {
+    public IdeaCreationRequest(String title, String description, String managerId) {
         this.title = title;
         this.description = description;
         this.managerId = managerId;
@@ -39,7 +39,7 @@ public class IdeaCreationRequest implements Request {
         return description;
     }
     
-    public int managerId() {
+    public String managerId() {
         return managerId;
     }
 

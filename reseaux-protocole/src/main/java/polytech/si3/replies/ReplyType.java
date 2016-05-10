@@ -28,6 +28,11 @@ public enum ReplyType {
     IDEA,
     
     /**
+     * Idea id
+     */
+    IDEA_ID,
+    
+    /**
      * List of ideas
      */
     IDEA_LIST,

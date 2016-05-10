@@ -14,6 +14,11 @@ public class IdeaPreviewReply extends AbstractIdeaIdReply {
      */
     private static final long serialVersionUID = 2673015365577440345L;
     
+    /**
+     * 0 = waiting for members
+     * 1 = started
+     * 2 = denied
+     */
     private final int status;
     private final User author, manager;
     private final String title;

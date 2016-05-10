@@ -17,7 +17,7 @@ public class AcceptUserRequest extends UserIdeaRequest {
      * @param ideaId The idea id
      * @param userId The user id
      */
-    public AcceptUserRequest(int ideaId, int userId) {
+    public AcceptUserRequest(int ideaId, String userId) {
         super(ideaId, userId);
     }
 

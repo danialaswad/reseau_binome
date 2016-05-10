@@ -17,7 +17,7 @@ public class DenyUserRequest extends UserIdeaRequest {
      * @param ideaId The idea id
      * @param userId The user id
      */
-    public DenyUserRequest(int ideaId, int userId) {
+    public DenyUserRequest(int ideaId, String userId) {
         super(ideaId, userId);
     }
 
