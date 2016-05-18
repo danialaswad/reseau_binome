@@ -1,8 +1,8 @@
-package polytech.si3.firstserver.client;
+package si3.firstserver.client;
 
-import polytech.si3.firstserver.client.builder.ClientConnexion;
-import polytech.si3.replies.Reply;
-import polytech.si3.requests.RequestType;
+import si3.firstserver.client.builder.ClientConnexion;
+import si3.replies.Reply;
+import si3.requests.RequestType;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -41,7 +41,9 @@ public class IdeaClient extends Thread {
                 connexion.read(in.readObject());
             }
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException  e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

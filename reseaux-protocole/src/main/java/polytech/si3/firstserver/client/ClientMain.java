@@ -1,6 +1,6 @@
-package polytech.si3.firstserver.client;
+package si3.firstserver.client;
 
-import polytech.si3.firstserver.client.builder.ClientConnexion;
+import si3.firstserver.client.builder.ClientConnexion;
 
 /**
  * Created by danialaswad on 03/05/2016.

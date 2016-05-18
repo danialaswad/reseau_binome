@@ -1,4 +1,4 @@
-package polytech.si3.firstserver.client.builder;
+package si3.firstserver.client.builder;
 
 
 import java.lang.reflect.InvocationTargetException;
@@ -18,7 +18,7 @@ public class BuilderReflect {
     public BuilderReflect(Builder builder){
         this.builder = builder;
         reflectClass = builder.getClass();
-        methodMap = new HashMap<>();
+        methodMap = new HashMap<String,Class[]>();
         initMap();
     }
 

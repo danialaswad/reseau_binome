@@ -1,4 +1,4 @@
-package polytech.si3.firstserver.client.builder;
+package si3.firstserver.client.builder;
 
 /**
  * Created by danialaswad on 10/05/2016.

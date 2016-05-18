@@ -1,4 +1,4 @@
-package polytech.si3.firstserver.client.handler;
+package si3.firstserver.client.handler;
 
 
 import java.lang.reflect.InvocationTargetException;
@@ -18,9 +18,10 @@ public class Handler {
     public Handler(){
         reader = new Reader();
         readerReflect = reader.getClass();
-        methodMap = new HashMap<>();
+        methodMap = new HashMap();
         init();
     }
+
 
     private void init() {
         Method[] methods = readerReflect.getDeclaredMethods();
@@ -29,13 +30,22 @@ public class Handler {
         }
     }
 
+    /**
+     * Redirect the object to the approriate method in order to read the content
+     * @param object
+     */
     public void readReply(Object object){
         Class reply = object.getClass();
         Method method;
         try {
             method = readerReflect.getMethod(reply.getSimpleName().toLowerCase(),methodMap.get(reply.getSimpleName().toLowerCase()));
+
             method.invoke(reader,object);
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException |IllegalArgumentException e) {
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
